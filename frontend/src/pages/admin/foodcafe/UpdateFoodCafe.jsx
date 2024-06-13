@@ -12,6 +12,7 @@ import { IoBackspaceOutline } from "react-icons/io5"
 import refreshToken from "../../../utils/Utils"
 import { useIdleTimer } from "react-idle-timer"
 import IdleModal from "../../../components/IdleModal"
+import { toast } from "react-toastify"
 
 const UpdateFoodCafe = () => {
     const [formData, setFormData] = useState({
@@ -58,7 +59,7 @@ const UpdateFoodCafe = () => {
 
     useIdleTimer({
         ref: idleTimerRef,
-        timeout: 100000,
+        timeout: 10 * 60 * 1000,
         onIdle: onIdle,
         debounce: 500
     })
@@ -145,6 +146,7 @@ const UpdateFoodCafe = () => {
                     "Content-Type": "multipart/form-data"
                 }
             })
+            toast.success("Foodcafe updated!")
             navigate("/foodcafe")
         } catch (error) {
             console.error("Error while updateing data: ", error)

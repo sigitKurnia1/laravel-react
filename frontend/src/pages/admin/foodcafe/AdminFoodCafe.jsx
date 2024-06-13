@@ -9,6 +9,7 @@ import { CiCirclePlus } from "react-icons/ci"
 import { useIdleTimer } from "react-idle-timer"
 import IdleModal from "../../../components/IdleModal"
 import refreshToken from "../../../utils/Utils"
+import { toast } from "react-toastify"
 
 const AdminFoodCafe = () => {
     const [loading, setLoading] = useState(false)
@@ -48,7 +49,7 @@ const AdminFoodCafe = () => {
 
     useIdleTimer({
         ref: idleTimerRef,
-        timeout: 100000,
+        timeout: 10 * 60 * 1000,
         onIdle: onIdle,
         debounce: 500
     })
@@ -98,6 +99,7 @@ const AdminFoodCafe = () => {
                     "Authorization": `Bearer ${token}`
                 }
             })
+            toast.success("Foodcafe deleted!")
             fetchData()
         } catch (error) {
             console.error("Error when deleteing data: ", error)

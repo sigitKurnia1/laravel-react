@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import { IoLogOutOutline } from "react-icons/io5"
 import axios from "axios"
+import { toast } from "react-toastify"
 
 const AdminNavbar = () => {
     const token = localStorage.getItem("token")
@@ -12,6 +13,7 @@ const AdminNavbar = () => {
             await axios.post("http://localhost:8000/api/logout")
             localStorage.removeItem("token")
             localStorage.removeItem("user")
+            toast.success("Successfully logged out!")
             navigate("/")
         } catch (error) {
             console.error("Error while logout: ", error)

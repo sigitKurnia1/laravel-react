@@ -25,11 +25,15 @@ import UserFacility from "./pages/user/facility/UserFacility"
 import UserFoodCafe from "./pages/user/foodcafe/UserFoodCafe"
 import UserHotel from "./pages/user/hotel/UserHotel"
 import UserNews from "./pages/user/news/UserNews"
+import { ToastContainer } from "react-toastify"
+import "react-toastify/ReactToastify.css"
 
 function App() {
 
   return (
-    <BrowserRouter>
+    <>
+      <ToastContainer />
+      <BrowserRouter>
       <Routes>
         <Route path="/" element={<GuestMiddleware component={<Login />} />} />
         <Route path="/register" element={<GuestMiddleware component={<Register />} />} />
@@ -61,6 +65,7 @@ function App() {
         <Route path="/user-news" element={<AuthMiddleware role="user" component={<UserNews />} />} />
       </Routes>
     </BrowserRouter>
+    </>
   )
 }
 

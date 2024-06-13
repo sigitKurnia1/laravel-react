@@ -11,6 +11,7 @@ import { LuConciergeBell } from "react-icons/lu"
 import refreshToken from "../../../utils/Utils"
 import { useIdleTimer } from "react-idle-timer"
 import IdleModal from "../../../components/IdleModal"
+import { toast } from "react-toastify"
 
 const UpdateFacility = () => {
     const [formData, setFormData] = useState({
@@ -57,7 +58,7 @@ const UpdateFacility = () => {
 
     useIdleTimer({
         ref: idleTimerRef,
-        timeout: 100000,
+        timeout: 10 * 60 * 1000,
         onIdle: onIdle,
         debounce: 500
     })
@@ -144,6 +145,7 @@ const UpdateFacility = () => {
                     "Content-Type": "multipart/form-data",
                 }
             })
+            toast.success("Facility updated!")
             navigate("/facility")
         } catch (error) {
             console.error("Error while updating data: ", error)

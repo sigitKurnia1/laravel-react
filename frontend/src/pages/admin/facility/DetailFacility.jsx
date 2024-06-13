@@ -47,7 +47,7 @@ const DetailFacility = () => {
 
     useIdleTimer({
         ref: idleTimerRef,
-        timeout: 100000,
+        timeout: 10 * 60 * 1000,
         onIdle: onIdle,
         debounce: 500
     })

@@ -10,6 +10,7 @@ import { FaRegNewspaper } from "react-icons/fa6"
 import refreshToken from "../../../utils/Utils"
 import { useIdleTimer } from "react-idle-timer"
 import IdleModal from "../../../components/IdleModal"
+import { toast } from "react-toastify"
 
 const UpdateNews = () => {
     const [formData, setFormData] = useState({
@@ -54,7 +55,7 @@ const UpdateNews = () => {
 
     useIdleTimer({
         ref: idleTimerRef,
-        timeout: 100000,
+        timeout: 10 * 60 * 1000,
         onIdle: onIdle,
         debounce: 500
     })
@@ -138,6 +139,7 @@ const UpdateNews = () => {
                     "Content-Type": "multipart/form-data"
                 }
             })
+            toast.success("News updated!")
             navigate("/news")
         } catch (error) {
             console.error("Error while updating data: ", error)

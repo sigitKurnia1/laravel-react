@@ -12,6 +12,7 @@ import Error from "../../../components/admin/Error"
 import { useIdleTimer } from "react-idle-timer"
 import refreshToken from "../../../utils/Utils"
 import IdleModal from "../../../components/IdleModal"
+import { toast } from "react-toastify"
 
 const UpdateHotel = () => {
     const [formData, setFormData] = useState({
@@ -58,7 +59,7 @@ const UpdateHotel = () => {
 
     useIdleTimer({
         ref: idleTimerRef,
-        timeout: 100000,
+        timeout: 10 * 60 * 1000,
         onIdle: onIdle,
         debounce: 500
     })
@@ -145,6 +146,7 @@ const UpdateHotel = () => {
                     "Content-Type": "multipart/form-data"
                 }
             })
+            toast.success("Hote updated!")
             navigate("/hotel")
         } catch (error) {
             console.error("Error while updating data: ", error)

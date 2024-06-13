@@ -9,6 +9,7 @@ import { CiCirclePlus } from "react-icons/ci"
 import { useIdleTimer } from "react-idle-timer"
 import refreshToken from "../../../utils/Utils"
 import IdleModal from "../../../components/IdleModal"
+import { toast } from "react-toastify"
 
 const AdminHotel = () => {
     const [data, setData] = useState([])
@@ -48,7 +49,7 @@ const AdminHotel = () => {
 
     useIdleTimer({
         ref: idleTimerRef,
-        timeout: 100000,
+        timeout: 10 * 60 * 1000,
         onIdle: onIdle,
         debounce: 500
     })
@@ -97,6 +98,7 @@ const AdminHotel = () => {
                     "Authorization": `Bearer ${token}`
                 }
             })
+            toast.success("Hotel deleted!")
             fetchData()
         } catch (error) {
             console.error("Error while deleting data: ", error)

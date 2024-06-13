@@ -11,6 +11,7 @@ import { useRef, useEffect } from "react"
 import { useIdleTimer } from "react-idle-timer"
 import refreshToken from "../../../utils/Utils"
 import IdleModal from "../../../components/IdleModal"
+import { toast } from "react-toastify"
 
 const CreateFacility = () => {
     const [formData, setFormData] = useState({
@@ -54,7 +55,7 @@ const CreateFacility = () => {
 
     useIdleTimer({
         ref: idleTimerRef,
-        timeout: 100000,
+        timeout: 10 * 60 * 1000,
         onIdle: onIdle,
         debounce: 500
     })
@@ -109,6 +110,7 @@ const CreateFacility = () => {
                     "Content-Type": "multipart/form-data"
                 }
             })
+            toast.success("Facility created successfully!")
             navigate('/facility')
         } catch (error) {
             console.error("Error while creating facility: ", error)

@@ -11,6 +11,7 @@ import { IoBackspaceOutline } from "react-icons/io5"
 import { useIdleTimer } from "react-idle-timer"
 import refreshToken from "../../../utils/Utils"
 import IdleModal from "../../../components/IdleModal"
+import { toast } from "react-toastify"
 
 const CreateFoodCafe = () => {
     const [formData, setFormData] = useState({
@@ -54,7 +55,7 @@ const CreateFoodCafe = () => {
 
     useIdleTimer({
         ref: idleTimerRef,
-        timeout: 100000,
+        timeout: 10 * 60 * 1000,
         onIdle: onIdle,
         debounce: 500
     })
@@ -108,6 +109,7 @@ const CreateFoodCafe = () => {
                     "Content-Type": "multipart/form-data",
                 }
             })
+            toast.success("Foodcafe created successfully!")
             navigate("/foodcafe")
         } catch (error) {
             console.error("Error while creating hotel: ", error)

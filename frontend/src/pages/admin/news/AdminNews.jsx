@@ -9,6 +9,7 @@ import NoData from "../../../components/admin/NoData"
 import refreshToken from "../../../utils/Utils"
 import IdleModal from "../../../components/IdleModal"
 import { useIdleTimer } from "react-idle-timer"
+import { toast } from "react-toastify"
 
 const AdminNews = () => {
     const [data, setData] = useState([])
@@ -48,7 +49,7 @@ const AdminNews = () => {
 
     useIdleTimer({
         ref: idleTimerRef,
-        timeout: 100000,
+        timeout: 10 * 60 * 1000,
         onIdle: onIdle,
         debounce: 500
     })
@@ -98,6 +99,7 @@ const AdminNews = () => {
                     "Authorization": `Bearer ${token}`
                 }
             })
+            toast.success("News deleted!")
             fetchData()
         } catch (error) {
             console.error("Error while deleting data: ", error)

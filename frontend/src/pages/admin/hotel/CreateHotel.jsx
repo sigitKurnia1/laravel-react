@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom"
 import refreshToken from "../../../utils/Utils"
 import { useIdleTimer } from "react-idle-timer"
 import IdleModal from "../../../components/IdleModal"
+import { toast } from "react-toastify"
 
 const CreateHotel = () => {
     const [formData, setFormData] = useState({  
@@ -54,7 +55,7 @@ const CreateHotel = () => {
 
     useIdleTimer({
         ref: idleTimerRef,
-        timeout: 100000,
+        timeout: 10 * 60 * 1000,
         onIdle: onIdle,
         debounce: 500
     })
@@ -108,6 +109,7 @@ const CreateHotel = () => {
                     "Content-Type": "multipart/form-data"
                 }
             })
+            toast.success("Hotel created successfully!")
             navigate("/hotel")
         } catch (error) {
             console.error("Error while create hotel: ", error)

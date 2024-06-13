@@ -9,6 +9,7 @@ import { IoBackspaceOutline } from "react-icons/io5"
 import { useIdleTimer } from "react-idle-timer"
 import refreshToken from "../../../utils/Utils"
 import IdleModal from "../../../components/IdleModal"
+import { toast } from "react-toastify"
 
 const CreateNews = () => {
     const [formData, setFormData] = useState({
@@ -50,7 +51,7 @@ const CreateNews = () => {
 
     useIdleTimer({
         ref: idleTimerRef,
-        timeout: 100000,
+        timeout: 10 * 60 * 1000,
         onIdle: onIdle,
         debounce: 500
     })
@@ -103,6 +104,7 @@ const CreateNews = () => {
                     "Content-Type": "multipart/form-data",
                 }
             })
+            toast.success("News created successfully!")
             navigate("/news")
         } catch (error) {
             console.error("Error while create news: ", error)
