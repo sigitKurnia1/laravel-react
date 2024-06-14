@@ -23,8 +23,10 @@ const UserFacility = () => {
         setLoading(true)
 
         try {
-            const response = await axios.get(`http://127.0.0.1:8000/api/facility?page=${currentPage}`, {
-                "Authorization": `Bearer ${token}`
+            const response = await axios.get(`http://127.0.0.1:8000/api/user-facility?page=${currentPage}`, {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
             })
             setData(response.data.data.data)
             setHasNextPage(!!response.data.data.next_page_url)
@@ -61,7 +63,7 @@ const UserFacility = () => {
                                 data.map((item) => (
                                     <>
                                         <div key={item.id} className="col-span-3 md:col-span-1">
-                                            <UserItem image={item.image} title={item.name} description={item.narration} detailLink={`#`} />
+                                            <UserItem image={item.image} title={item.name} description={item.narration} detailLink={`/user-facility-detail/${item.id}`} />
                                         </div>
                                     </>
                                 ))

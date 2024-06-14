@@ -23,7 +23,7 @@ const UserHotel = () => {
         setLoading(true)
 
         try {
-            const response = await axios.get(`http://127.0.0.1:8000/api/hotel?page=${currentPage}`, {
+            const response = await axios.get(`http://127.0.0.1:8000/api/user-hotel?page=${currentPage}`, {
                 headers: {
                     "Authorization": `Bearer ${token}`
                 }
@@ -62,8 +62,8 @@ const UserHotel = () => {
                             data.length > 0 ? (
                                 data.map((item) => (
                                     <>
-                                        <div key={item.id} className="col-span-3">
-                                            <UserItem image={item.image} title={item.name} description={item.narration} detailLink={`#`} />
+                                        <div key={item.id} className="col-span-3 md:col-span-1">
+                                            <UserItem image={item.image} title={item.name} description={item.narration} detailLink={`/user-hotel-detail/${item.id}`} />
                                         </div>
                                     </>
                                 ))

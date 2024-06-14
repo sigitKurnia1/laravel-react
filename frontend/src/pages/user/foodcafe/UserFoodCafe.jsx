@@ -23,7 +23,7 @@ const UserFoodCafe = () => {
         setLoading(true)
 
         try {
-            const response = await axios.get(`http://127.0.0.1:8000/api/foodcafe?page=${currentPage}`, {
+            const response = await axios.get(`http://127.0.0.1:8000/api/user-foodcafe?page=${currentPage}`, {
                 headers: {
                     "Authorization": `Bearer ${token}`
                 }
@@ -63,7 +63,7 @@ const UserFoodCafe = () => {
                                 data.map((item) => (
                                     <>
                                         <div key={item.id} className="col-span-3 md:col-span-1">
-                                            <UserItem image={item.image} title={item.name} description={item.narration} detailLink={``} />
+                                            <UserItem image={item.image} title={item.name} description={item.narration} detailLink={`/user-foodcafe-detail/${item.id}`} />
                                         </div>
                                     </>
                                 ))
@@ -75,7 +75,7 @@ const UserFoodCafe = () => {
                         )
                     }
                     {
-                        loading && data.length > 0 && (
+                        !loading && data.length > 0 && (
                             <div className="md:col-span-3 w-96 flex justify-center my-10">
                                 <div className="join grid grid-cols-2 w-full md:w-auto">
                                     <button className="join-item btn btn-outline" onClick={handlePrevPage} disabled={!hasPrevPage}>Previous Page</button>

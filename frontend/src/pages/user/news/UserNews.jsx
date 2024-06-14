@@ -23,7 +23,7 @@ const UserNews = () => {
         setLoading(true)
 
         try {
-            const response = await axios.get(`http://127.0.0.1:8000/api/news?page=${currentPage}`, {
+            const response = await axios.get(`http://127.0.0.1:8000/api/user-news?page=${currentPage}`, {
                 headers: {
                     "Authorization": `Bearer ${token}`
                 }
@@ -63,7 +63,7 @@ const UserNews = () => {
                                 data.map((item) => (
                                     <>
                                         <div key={item.id} className="col-span-3 md:col-span-1">
-                                            <UserItem image={item.image} title={item.title} description={item.narration} detailLink={`/detail-news/${item.id}`} />
+                                            <UserItem image={item.image} title={item.title} description={item.narration} detailLink={`/user-news-detail/${item.id}`} />
                                         </div>
                                     </>
                                 ))

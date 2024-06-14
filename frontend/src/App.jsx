@@ -25,6 +25,10 @@ import UserFacility from "./pages/user/facility/UserFacility"
 import UserFoodCafe from "./pages/user/foodcafe/UserFoodCafe"
 import UserHotel from "./pages/user/hotel/UserHotel"
 import UserNews from "./pages/user/news/UserNews"
+import UserDetailFacility from "./pages/user/facility/UserDetailFacility"
+import UserDetailFoodCafe from "./pages/user/foodcafe/UserDetailFoodCafe"
+import UserDetailHotel from "./pages/user/hotel/UserDetailHotel"
+import UserDetailNews from "./pages/user/news/UserDetailNews"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/ReactToastify.css"
 
@@ -60,9 +64,13 @@ function App() {
         {/* User Route */}
         <Route path="/user" element={<AuthMiddleware role="user" component={<UserDashboard />}/>} />
         <Route path="/user-facility" element={<AuthMiddleware role="user" component={<UserFacility />} />} />
+        <Route path="/user-facility-detail/:id" element={<AuthMiddleware role="user" component={<UserDetailFacility />} />} />
         <Route path="/user-foodcafe" element={<AuthMiddleware role="user" component={<UserFoodCafe />} />} />
+        <Route path="/user-foodcafe-detail/:id" element={<AuthMiddleware role="user" component={<UserDetailFoodCafe />} />} />
         <Route path="/user-hotel" element={<AuthMiddleware role="user" component={<UserHotel />} />} />
+        <Route path="/user-hotel-detail/:id" element={<AuthMiddleware role="user" component={<UserDetailHotel />} />} />
         <Route path="/user-news" element={<AuthMiddleware role="user" component={<UserNews />} />} />
+        <Route path="/user-news-detail/:id" element={<AuthMiddleware role="user" component={<UserDetailNews />} />} />
       </Routes>
     </BrowserRouter>
     </>
