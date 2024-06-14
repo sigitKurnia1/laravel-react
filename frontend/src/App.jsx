@@ -31,8 +31,32 @@ import UserDetailHotel from "./pages/user/hotel/UserDetailHotel"
 import UserDetailNews from "./pages/user/news/UserDetailNews"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/ReactToastify.css"
+import { useEffect } from "react"
+import axios from "axios"
 
 function App() {
+  useEffect(() => {
+    const refreshToken = async () => {
+      const token = localStorage.getItem('token')
+
+      if (!token) return
+
+      try {
+        const response = await axios.get("http://127.0.0.1:8000/api/refresh-token", {
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        })
+        localStorage.setItem('token', response.data.token)
+      } catch (error) {
+        console.error("Error while refreshing token: ", error)
+      }
+    }
+
+    const timeInterval = setInterval(refreshToken, 50 * 60 * 1000)
+
+    return () => clearInterval(timeInterval)
+  })
 
   return (
     <>
