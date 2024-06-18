@@ -60,7 +60,7 @@ function App() {
 
   return (
     <>
-      <ToastContainer />
+      <ToastContainer closeOnClick pauseOnHover={false} />
       <BrowserRouter>
       <Routes>
         <Route path="/" element={<GuestMiddleware component={<Login />} />} />

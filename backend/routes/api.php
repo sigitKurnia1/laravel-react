@@ -36,7 +36,7 @@ Route::middleware(['auth:api', 'user'])->group(function () {
 });
 
 //Admin & User Route
-Route::post('/register', App\Http\Controllers\Api\RegisterController::class);
-Route::post('/login', App\Http\Controllers\Api\LoginController::class);
-Route::post('/logout', App\Http\Controllers\Api\LogoutController::class);
-Route::get("/refresh-token", [AuthController::class, 'refresh_token']);
+Route::post("/register", App\Http\Controllers\Api\RegisterController::class);
+Route::post("/login", App\Http\Controllers\Api\LoginController::class);
+Route::post("/logout", App\Http\Controllers\Api\LogoutController::class);
+Route::get("/refresh-token", [AuthController::class, "refresh_token"]);
